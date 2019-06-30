@@ -1,0 +1,39 @@
+server.port : 8081
+
+spring: 
+  aop:
+    proxy-target-class: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/manage?useUnicode=true&characterEncoding=utf8
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: 123123
+  
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 
+    #毫秒
+    timeout: 3600
+
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+mybatis:
+  mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.framework.manage.bean  # 注意：对应实体类的路径
+
+#ZooKeeper 将demo作为服务提供者
+dubbo:
+  registry:
+    address: localhost:2181
+    
+#MQ 消息信息
+rocketmq:
+  consumer :
+    namesrvAddr : 127.0.0.1:9876
+    customerGroup : ConsumerGroup
+    instance : Consumer
+    topics: TestTopic0623
+    tag: "*"

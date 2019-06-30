@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.manage.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.framework.manage.bean.User" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="enableDate" property="enabledate" jdbcType="TIMESTAMP" />
+    <result column="disableDate" property="disabledate" jdbcType="TIMESTAMP" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="channelId" property="channelid" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="findById" parameterType="Integer" resultMap="BaseResultMap">
+        select * from manage_user where id=#{id}
+  </select>
+
+  <insert id="insert" parameterType="com.framework.manage.bean.User" >
+    insert into manage_user (id, code, name, 
+      status, enableDate, disableDate, 
+      createDate, channelId)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{enabledate,jdbcType=TIMESTAMP}, #{disabledate,jdbcType=TIMESTAMP}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{channelid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.manage.bean.User" >
+    insert into manage_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="enabledate != null" >
+        enableDate,
+      </if>
+      <if test="disabledate != null" >
+        disableDate,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="channelid != null" >
+        channelId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="enabledate != null" >
+        #{enabledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabledate != null" >
+        #{disabledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="channelid != null" >
+        #{channelid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

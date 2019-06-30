@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="publicBusiness">
+  	<commentGenerator>
+	      <property name="suppressDate" value="true"/>
+	      <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+	      <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+    <!-- mysql版本过高导致的 驱动换位置了，而且需要配置 serverTimezone-->
+    <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/business?serverTimezone=UTC" driverClass="com.mysql.jdbc.Driver" password="123123" userId="root" />
+    <!-- 生成模型的包名和位置  考虑到dubbo的特性，这边javaBean类抽象到core核心工程内  俺也不知道为啥eclipese上能用相对工程路径 这里不可以 反正后续整个jar都要重构-->
+    <javaModelGenerator targetPackage="com.framework.core.shareBean" targetProject="D:\workspace\study\Distributed_Project\core\src\main\java" />
+    <!-- 生成映射文件的包名和位置-->
+    <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources" />
+    <!-- 生成DAO的包名和位置-->
+    <javaClientGenerator targetPackage="com.framework.core.shareMapper" targetProject="D:\workspace\study\Distributed_Project\core\src\main\java" type="XMLMAPPER" />
+    <!-- schema对应的是用户名 -->
+    <table schema="root" tableName="channel"  domainObjectName="Channel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  </context>
+</generatorConfiguration>
