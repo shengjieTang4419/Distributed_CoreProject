@@ -4,7 +4,7 @@ spring:
   aop:
     proxy-target-class: true
   datasource:
-    url: jdbc:mysql://localhost:3306/manage?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:8066/TESTDB?useUnicode=true&characterEncoding=utf8
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: 123123
