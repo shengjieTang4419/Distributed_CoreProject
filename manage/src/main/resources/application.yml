@@ -23,6 +23,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
   type-aliases-package: com.framework.manage.bean  # 注意：对应实体类的路径
+  config-location: classpath:settings/myBatis_config.xml #mybatis的配置类
 
 #ZooKeeper 将demo作为服务提供者
 dubbo:
