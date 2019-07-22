@@ -16,20 +16,10 @@
         select * from manage_user where id=#{id}
   </select>
 
-  <insert id="insert" parameterType="com.framework.manage.bean.User" >
-    insert into manage_user (id, code, name, 
-      status, enableDate, disableDate, 
-      createDate, channelId)
-    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{status,jdbcType=CHAR}, #{enabledate,jdbcType=TIMESTAMP}, #{disabledate,jdbcType=TIMESTAMP}, 
-      #{createdate,jdbcType=TIMESTAMP}, #{channelid,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.framework.manage.bean.User" >
+  <insert id="doInsert" parameterType="com.framework.manage.bean.User" >
     insert into manage_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
         id,
-      </if>
       <if test="code != null" >
         code,
       </if>
@@ -53,9 +43,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
+        next value for MYCATSEQ_GLOBAL,
       <if test="code != null" >
         #{code,jdbcType=VARCHAR},
       </if>

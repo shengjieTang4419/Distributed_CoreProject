@@ -70,7 +70,8 @@ public class SqlExectorPlugin implements Interceptor {
         if(StringUtil.isEmptyOrNull(sql)){
             return "";
         }
-
+        //1.5 美化SQL 不然换行符 之类的太丑了
+        sql = beautfySQL(sql);
         //2.如果是不传入任何参数的话，直接返回
         if(parameterObject==null|| CollectionUtil.isEmpty(parameterMappingList)){
             return sql;
@@ -98,6 +99,10 @@ public class SqlExectorPlugin implements Interceptor {
             }
         }
         return sql;
+    }
+
+    private String beautfySQL(String sql) {
+        return sql.trim().replaceAll("\n","").replaceAll("\r","").replaceAll(" {2,}"," ").trim();
     }
 
     private String handleCommonParameter(String sql, List<ParameterMapping> parameterMappingList, Class<?> parameterObjectClass, Object parameterObject) throws NoSuchFieldException, IllegalAccessException {
